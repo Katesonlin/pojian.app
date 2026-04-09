@@ -1,90 +1,294 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browser Relay - Kateson</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .container {
-      text-align: center;
-      padding: 40px;
-    }
-    .status {
-      font-size: 80px;
-      margin-bottom: 20px;
-    }
-    .title {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #00d4ff;
-    }
-    .subtitle {
-      font-size: 16px;
-      color: #888;
-      margin-bottom: 40px;
-    }
-    .info {
-      background: #1a1a1a;
-      border-radius: 12px;
-      padding: 24px;
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .info h3 {
-      color: #00d4ff;
-      margin-bottom: 12px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .info p {
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 8px;
-    }
-    .info code {
-      background: #2a2a2a;
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: #00d4ff;
-      font-family: monospace;
-    }
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>破茧 · 碳循环减脂</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#6366f1;--primary-light:#818cf8;--primary-dark:#4f46e5;--accent:#f59e0b;--bg:#f5f6fa;--surface:#fff;--text:#1e1e2e;--text-secondary:#6b7280;--text-hint:#9ca3af;--border:#e5e7eb;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(99,102,241,.15);--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px}
+body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.5;max-width:520px;margin:0 auto;padding-bottom:88px;-webkit-font-smoothing:antialiased}
+input,select,textarea{font-family:inherit}
+.page{display:none;padding:16px 14px 8px}.page.active{display:block}
+.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:6px 0;z-index:200;box-shadow:0 -2px 16px rgba(0,0,0,.06)}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px;color:var(--text-secondary);cursor:pointer;transition:color .2s}
+.tab-item .tab-icon{font-size:1.375rem;line-height:1;height:22px;display:flex;align-items:center;justify-content:center}
+.tab-item .tab-label{font-size:.6875rem;font-weight:500;white-space:nowrap}
+.tab-item.active{color:var(--primary)}.tab-item.active .tab-label{font-weight:600}
+.tab-item.center-tab{position:relative}
+.tab-item.center-tab::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:50%;z-index:-1;box-shadow:0 4px 16px rgba(99,102,241,.4)}
+.tab-item.center-tab .tab-icon{color:#fff;font-size:1.625rem;margin-top:-2px}
+.hero-card{background:linear-gradient(145deg,#6366f1,#818cf8);border-radius:var(--radius-xl);padding:22px 18px 18px;color:#fff;margin-bottom:6px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.hero-card::after{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.06);border-radius:50%}
+.hero-card .hero-eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.hero-card .hero-pill{font-size:.6875rem;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.2)}
+.hero-kcal-big{font-size:3rem;font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:2px}
+.hero-kcal-sub{font-size:.75rem;opacity:.7;margin-bottom:14px}
+.hero-macros{display:flex;gap:0}
+.hero-mi{flex:1;text-align:center;padding:10px 0;border-left:1px solid rgba(255,255,255,.2)}
+.hero-mi:first-child{border-left:none}
+.hero-mi-val{font-size:1.375rem;font-weight:800;line-height:1}
+.hero-mi-lbl{font-size:.6875rem;opacity:.65;margin-top:3px}
+.hero-week-row{display:flex;gap:5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-wb{flex:1;text-align:center;padding:6px 2px;background:rgba(255,255,255,.1);border-radius:var(--radius-sm);font-size:.625rem;line-height:1.4}
+.hero-wb.s{background:rgba(255,255,255,.92);color:var(--primary);font-weight:700}
+.hero-wb .wd{opacity:.6}.hero-wb.s .wd{opacity:.7}
+.hero-wb .wl{font-weight:700;margin-top:2px}.hero-wb.s .wl{color:var(--primary)}
+.card{background:var(--surface);border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04)}
+.card-title{display:flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:700;color:var(--text);margin-bottom:12px;padding-bottom:10px;border-bottom:1.5px solid var(--bg)}
+.card-title .ct-dot{width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center}
+.stat-cell{padding:12px 4px;background:var(--bg);border-radius:var(--radius-md)}
+.stat-val{font-size:1.25rem;font-weight:800;color:var(--primary);line-height:1}
+.stat-lbl{font-size:.625rem;color:var(--text-secondary);margin-top:3px;font-weight:500}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+.form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.fi{display:flex;flex-direction:column;gap:5px}
+.fi label{font-size:.75rem;font-weight:600;color:var(--text-secondary);letter-spacing:.2px}
+.fi input,.fi select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-md);font-size:.9375rem;background:var(--bg);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.fi input:focus,.fi select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.1);background:#fff}
+.sum-box{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-radius:var(--radius-md);padding:12px 14px;border:1px solid #d1fae5}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:.8125rem}
+.sum-row:not(:last-child){border-bottom:1px dashed #a7f3d1}
+.sum-lbl{color:#065f46;font-weight:500}.sum-val{font-weight:700;color:#047857}
+.sum-lbl.highlight{color:var(--primary-dark);font-weight:700}
+.sum-val.highlight{color:var(--primary);font-weight:800}
+.week-grid{display:flex;gap:5px;margin-top:8px}
+.wd-cell{flex:1;text-align:center;padding:7px 2px;border-radius:var(--radius-sm);font-size:.625rem;line-height:1.5;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.wd-cell .wd-d{opacity:.6}.wd-cell .wd-l{font-weight:700;margin-top:2px}
+.wd-cell.s{border-color:currentColor;transform:scale(1.05)}
+.wd-cell.hi{background:#fef2f2;color:#dc2626}.wd-cell.mi{background:#fffbeb;color:#d97706}.wd-cell.lo{background:#f0fdf4;color:#059669}
+.wd-cell.hi.s{background:#fee2e2;font-weight:700}.wd-cell.mi.s{background:#fef3c7;font-weight:700}.wd-cell.lo.s{background:#d1fae5;font-weight:700}
+.carb-sw{display:flex;gap:8px;margin-bottom:6px}
+.carb-btn{flex:1;text-align:center;padding:10px 4px;border-radius:var(--radius-md);border:2px solid transparent;cursor:pointer;transition:all .2s;background:#fff}
+.carb-btn .cb-v{font-weight:800;font-size:.875rem;margin-bottom:3px}.carb-btn .cb-l{font-size:.625rem;opacity:.6}
+.carb-btn.high{color:#dc2626}.carb-btn.high.s{border-color:#dc2626;background:#fef2f2;font-weight:700}
+.carb-btn.mid{color:#d97706}.carb-btn.mid.s{border-color:#d97706;background:#fffbeb;font-weight:700}
+.carb-btn.low{color:#059669}.carb-btn.low.s{border-color:#059669;background:#f0fdf4;font-weight:700}
+.meal-card{background:var(--surface);border-radius:var(--radius-lg);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04)}
+.meal-hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 12px;border-bottom:1px solid var(--bg)}
+.meal-name-row{display:flex;align-items:center;gap:8px}
+.meal-emoji{font-size:1.25rem;line-height:1}
+.meal-name{font-size:.9375rem;font-weight:800;color:var(--text)}
+.meal-time{font-size:.6875rem;color:var(--text-hint);margin-top:2px}
+.meal-macros{display:flex;gap:8px;align-items:center}
+.meal-macro{text-align:center;padding:4px 8px;background:var(--bg);border-radius:var(--radius-sm);min-width:48px}
+.meal-macro .mm-val{font-size:.875rem;font-weight:800;color:var(--primary)}
+.meal-macro .mm-lbl{font-size:.5625rem;color:var(--text-hint);font-weight:500}
+.meal-body{padding:12px 16px}
+.meal-food-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--border)}
+.meal-food-item:last-child{border-bottom:none}
+.mf-name{font-size:.875rem;color:var(--text);display:flex;align-items:center;gap:6px}
+.mf-name::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.mf-right{display:flex;align-items:center;gap:8px}
+.mf-portion{font-size:.75rem;color:var(--text-secondary)}
+.mf-cal{font-size:.75rem;font-weight:700;color:var(--text)}
+.meal-note{margin-top:10px;padding:8px 12px;background:#fef9ec;border-radius:var(--radius-sm);font-size:.75rem;color:#92400e;line-height:1.5;border-left:3px solid var(--warning)}
+.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.formula-card{background:var(--surface);border-radius:var(--radius-lg);padding:16px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04)}
+.formula-card.accent{background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-color:#c7d2fe}
+.fc-title{font-size:.6875rem;color:var(--text-secondary);font-weight:600;margin-bottom:6px}
+.fc-val{font-size:1.625rem;font-weight:800;line-height:1;color:var(--primary)}
+.fc-val.red{color:#dc2626}.fc-val.orange{color:#d97706}.fc-val.green{color:#059669}
+.fc-sub{font-size:.625rem;color:var(--text-hint);margin-top:4px}
+.formula-coef{background:var(--surface);border-radius:var(--radius-lg);padding:14px 16px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);margin-top:10px}
+.formula-coef-title{font-size:.75rem;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.coef-row{display:flex;justify-content:space-between;padding:6px 0;font-size:.8125rem;border-bottom:1px solid var(--bg)}
+.coef-row:last-child{border-bottom:none}
+.coef-lbl{color:var(--text-secondary)}.coef-val{font-weight:700;color:var(--text)}
+.train-week-bar{display:flex;gap:5px;margin-bottom:12px;background:var(--surface);border-radius:var(--radius-lg);padding:10px;box-shadow:var(--shadow-sm)}
+.train-dow{flex:1;text-align:center;padding:6px 2px;border-radius:var(--radius-sm);font-size:.625rem;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.train-dow .tdow-d{opacity:.5;font-size:.5625rem}.train-dow .tdow-l{font-weight:700;margin-top:2px;font-size:.6875rem}
+.train-dow.s{border-color:var(--primary);background:#eef2ff}.train-dow.s .tdow-d{opacity:.8}
+.train-day-card{background:var(--surface);border-radius:var(--radius-lg);margin-bottom:8px;padding:14px 16px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04)}
+.tdc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.tdc-name{font-size:.9375rem;font-weight:800;color:var(--text)}
+.tdc-badges{display:flex;gap:4px;flex-wrap:wrap}
+.tdc-badge{padding:2px 8px;border-radius:20px;font-size:.625rem;font-weight:700;display:inline-block}
+.badge-hc{background:#fef2f2;color:#dc2626}.badge-mc{background:#fffbeb;color:#d97706}.badge-lc{background:#f0fdf4;color:#059669}
+.badge-str{background:#ede9fe;color:#7c3aed}.badge-car{background:#dbeafe;color:#2563eb}.badge-res{background:#f3f4f6;color:#9ca3af}
+.tdc-items{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tdc-item{padding:4px 10px;border-radius:6px;font-size:.6875rem;background:var(--bg);color:#374151;border:1px solid var(--border)}
+.tdc-item.pk{background:#ede9fe;color:#5b21b6;border-color:#c4b5fd;font-weight:700}
+.tdc-note{display:flex;align-items:center;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid var(--bg);font-size:.6875rem;color:var(--text-secondary)}
+.tdc-note .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ingr-table{width:100%;border-collapse:collapse;font-size:.8125rem}
+.ingr-table th{padding:8px 10px;text-align:left;background:var(--bg);color:var(--text-secondary);font-weight:700;font-size:.6875rem;border-bottom:2px solid var(--border)}
+.ingr-table td{padding:8px 10px;border-bottom:1px solid #f9fafb;color:#374151}
+.ingr-table .tc{text-align:right;color:var(--text-secondary);font-size:.75rem}
+.ingr-table .kc{text-align:right;color:var(--primary);font-weight:700}
+.veg-tags{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px}
+.veg-tag{padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600;background:#f0fdf4;color:#059669;border:1px solid #a7f3d1}
+.tip-box{background:#fffbeb;border-radius:var(--radius-md);padding:10px 14px;font-size:.75rem;color:#92400e;line-height:1.6;border-left:3px solid var(--warning);margin-top:8px}
+.page-hint{font-size:.6875rem;color:var(--text-hint);padding:0 2px 6px;margin-bottom:2px;font-weight:500}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="status pulse">🦐</div>
-    <div class="title">Browser Relay Active</div>
-    <div class="subtitle">Katesonlin's Tunnel</div>
-    <div class="info">
-      <h3>连接状态</h3>
-      <p>✅ SSH 隧道已建立</p>
-      <p>✅ Extension 已连接</p>
-      <p>📡 转发端口: <code>18789</code></p>
-      <p style="margin-top: 16px; font-size: 12px; color: #666;">
-        最后更新: 2026-04-09
-      </p>
+
+<!-- PAGE 0: 公式计算 -->
+<div id="page-0" class="page">
+  <p class="page-hint">联动身体数据页 · 实时更新</p>
+  <div class="formula-grid">
+    <div class="formula-card"><div class="fc-title">BMI 指数</div><div class="fc-val" id="f0-bmi">--</div><div class="fc-sub">体脂参考</div></div>
+    <div class="formula-card"><div class="fc-title">BMR 基础代谢</div><div class="fc-val" id="f0-bmr">--</div><div class="fc-sub">kcal / 天</div></div>
+    <div class="formula-card"><div class="fc-title">TDEE 总消耗</div><div class="fc-val" id="f0-tdee">--</div><div class="fc-sub">kcal / 天</div></div>
+    <div class="formula-card accent"><div class="fc-title">目标热量</div><div class="fc-val" id="f0-goal">--</div><div class="fc-sub">缺口 <span id="f0-def">450</span> kcal</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot"></span>三档碳日总览</div>
+    <div class="stat-row" style="margin-bottom:0">
+      <div class="stat-cell" style="background:#fef2f2"><div class="stat-val red" id="f0-hc-k">--</div><div class="stat-lbl" style="color:#dc2626">高碳 kcal</div><div class="stat-lbl" style="color:#dc2626">碳:<strong id="f0-hc-c">--</strong>g · 脂:<strong id="f0-hc-f">--</strong>g</div></div>
+      <div class="stat-cell" style="background:#fffbeb"><div class="stat-val orange" id="f0-mc-k">--</div><div class="stat-lbl" style="color:#d97706">中碳 kcal</div><div class="stat-lbl" style="color:#d97706">碳:<strong id="f0-mc-c">--</strong>g · 脂:<strong id="f0-mc-f">--</strong>g</div></div>
+      <div class="stat-cell" style="background:#f0fdf4"><div class="stat-val green" id="f0-lc-k">--</div><div class="stat-lbl" style="color:#059669">低碳 kcal</div><div class="stat-lbl" style="color:#059669">碳:<strong id="f0-lc-c">--</strong>g · 脂:<strong id="f0-lc-f">--</strong>g</div></div>
     </div>
   </div>
+  <div class="formula-coef">
+    <div class="formula-coef-title">⚙️ 当前营养系数</div>
+    <div class="coef-row"><span class="coef-lbl">蛋白质</span><span class="coef-val" id="f0-pf">2.0 g/kg</span></div>
+    <div class="coef-row"><span class="coef-lbl">高碳碳水</span><span class="coef-val" id="f0-hcc">4 g/kg</span></div>
+    <div class="coef-row"><span class="coef-lbl">中碳碳水</span><span class="coef-val" id="f0-mcc">2.5 g/kg</span></div>
+    <div class="coef-row"><span class="coef-lbl">低碳碳水</span><span class="coef-val">1 g/kg（固定）</span></div>
+  </div>
+  <div class="card" style="margin-top:10px">
+    <div class="card-title"><span class="ct-dot" style="background:#10b981"></span>计算公式</div>
+    <div class="sum-box">
+      <div class="sum-row"><span class="sum-lbl">BMR</span><span class="sum-val" id="f0-formula-bmr">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">TDEE</span><span class="sum-val" id="f0-formula-tdee">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">目标热量</span><span class="sum-val" id="f0-formula-goal">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">高碳日热量</span><span class="sum-val" id="f0-formula-hc">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">中碳日热量</span><span class="sum-val" id="f0-formula-mc">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">低碳日热量</span><span class="sum-val" id="f0-formula-lc">--</span></div>
+    </div>
+    <div class="tip-box">💡 在「身体数据」页修改参数，所有数值自动联动</div>
+  </div>
+</div>
+
+<!-- PAGE 1: 训练 -->
+<div id="page-1" class="page">
+  <p class="page-hint">每周训练节奏 · 周五腿训后禁止LISS</p>
+  <div class="train-week-bar" id="train-week-bar"></div>
+  <div id="train-days-container"></div>
+</div>
+
+<!-- PAGE 2: 身体数据（主页面） -->
+<div id="page-2" class="page active">
+  <div class="hero-card">
+    <div class="hero-eyebrow">
+      <span style="font-size:.75rem;opacity:.85;font-weight:600">今日营养目标</span>
+      <span class="hero-pill" id="hero-pill">--</span>
+    </div>
+    <div class="hero-kcal-big" id="hero-kcal">--</div>
+    <div class="hero-kcal-sub">kcal / 今日目标</div>
+    <div class="hero-macros">
+      <div class="hero-mi"><div class="hero-mi-val" id="hero-p">--</div><div class="hero-mi-lbl">蛋白质 g</div></div>
+      <div class="hero-mi"><div class="hero-mi-val" id="hero-c">--</div><div class="hero-mi-lbl">碳水 g</div></div>
+      <div class="hero-mi"><div class="hero-mi-val" id="hero-f">--</div><div class="hero-mi-lbl">脂肪 g</div></div>
+    </div>
+    <div class="hero-week-row" id="hero-week-row"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot"></span>身体数据</div>
+    <div class="form-grid">
+      <div class="fi"><label>身高（cm）</label><input type="number" id="d-height" value="174" min=100 max=220 oninput="calcAll()"></div>
+      <div class="fi"><label>体重（kg）</label><input type="number" id="d-weight" value="90" min=30 max=200 step=0.1 oninput="calcAll()"></div>
+      <div class="fi"><label>年龄（岁）</label><input type="number" id="d-age" value="30" min=16 max=80 oninput="calcAll()"></div>
+      <div class="fi"><label>目标体重（kg）</label><input type="number" id="d-goal" value="74" min=30 max=200 step=0.1 oninput="calcAll()"></div>
+    </div>
+    <div class="form-grid">
+      <div class="fi"><label>活动系数</label><select id="d-activity" onchange="calcAll()"><option value="1.2">久坐 ×1.2</option><option value="1.375">少动 ×1.375</option><option value="1.55" selected>中度 ×1.55</option><option value="1.725">高度 ×1.725</option></select></div>
+      <div class="fi"><label>热量缺口（kcal）</label><input type="number" id="d-deficit" value="450" min=100 max=1000 step=10 oninput="calcAll()"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot" style="background:#f59e0b"></span>碳循环系数</div>
+    <div class="form-grid-3">
+      <div class="fi"><label>蛋白质系数</label><select id="d-profactor" onchange="calcAll()"><option value="1.6">1.6 g/kg</option><option value="2.0" selected>2.0 g/kg</option><option value="2.4">2.4 g/kg</option></select></div>
+      <div class="fi"><label>高碳碳水</label><input type="number" id="d-hccarb" value="4" min=1 max=8 step=0.5 oninput="calcAll()"></div>
+      <div class="fi"><label>中碳碳水</label><input type="number" id="d-mccarb" value="2.5" min=0.5 max=5 step=0.5 oninput="calcAll()"></div>
+    </div>
+    <div class="week-grid" id="carb-grid"></div>
+    <div class="tip-box">低碳碳水固定 1 g/kg · 脂肪系数：高碳 0.7 / 中碳 0.85 / 低碳 1.1 g/kg</div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot" style="background:#10b981"></span>实时计算结果</div>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="stat-val" id="s-bmi">--</div><div class="stat-lbl">BMI</div></div>
+      <div class="stat-cell"><div class="stat-val" id="s-bmr">--</div><div class="stat-lbl">BMR</div></div>
+      <div class="stat-cell"><div class="stat-val" id="s-tdee">--</div><div class="stat-lbl">TDEE</div></div>
+    </div>
+    <div class="sum-box" style="margin-top:10px">
+      <div class="sum-row"><span class="sum-lbl highlight">目标热量</span><span class="sum-val highlight" id="s-goal">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">高碳日</span><span class="sum-val" id="s-hc">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">中碳日</span><span class="sum-val" id="s-mc">--</span></div>
+      <div class="sum-row"><span class="sum-lbl">低碳日</span><span class="sum-val" id="s-lc">--</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: 饮食计划 -->
+<div id="page-3" class="page">
+  <div class="hero-card">
+    <div class="hero-eyebrow">
+      <span style="font-size:.75rem;opacity:.85;font-weight:600">今日碳循环</span>
+      <span class="hero-pill" id="diet-pill">--</span>
+    </div>
+    <div class="hero-kcal-big" id="diet-kcal">--</div>
+    <div class="hero-kcal-sub">kcal / 今日目标</div>
+    <div class="hero-macros">
+      <div class="hero-mi"><div class="hero-mi-val" id="diet-p">--</div><div class="hero-mi-lbl">蛋白质 g</div></div>
+      <div class="hero-mi"><div class="hero-mi-val" id="diet-c">--</div><div class="hero-mi-lbl">碳水 g</div></div>
+      <div class="hero-mi"><div class="hero-mi-val" id="diet-f">--</div><div class="hero-mi-lbl">脂肪 g</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot" style="background:#f59e0b"></span>切换碳日</div>
+    <div class="carb-sw">
+      <div class="carb-btn high" id="cb-high" onclick="setTC('high')"><div class="cb-v">🔥 高碳</div><div class="cb-l">4 / 0.7 g/kg</div></div>
+      <div class="carb-btn mid" id="cb-mid" onclick="setTC('mid')"><div class="cb-v">⚡ 中碳</div><div class="cb-l">2.5 / 0.85 g/kg</div></div>
+      <div class="carb-btn low" id="cb-low" onclick="setTC('low')"><div class="cb-v">🌙 低碳</div><div class="cb-l">1 / 1.1 g/kg</div></div>
+    </div>
+    <div class="week-grid" id="diet-carb-grid" style="margin-top:8px"></div>
+  </div>
+  <div id="diet-detail-container"></div>
+</div>
+
+<!-- PAGE 4: 食材 -->
+<div id="page-4" class="page">
+  <p class="page-hint">每 100g 生重营养成分参考</p>
+  <div id="ingr-container"></div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab-item" onclick="sw(0)"><div class="tab-icon">🧮</div><div class="tab-label">公式计算</div></div>
+  <div class="tab-item" onclick="sw(1)"><div class="tab-icon">🏋️</div><div class="tab-label">训练</div></div>
+  <div class="tab-item center-tab" onclick="sw(2)"><div class="tab-icon">📊</div><div class="tab-label">身体数据</div></div>
+  <div class="tab-item" onclick="sw(3)"><div class="tab-icon">🍽️</div><div class="tab-label">饮食计划</div></div>
+  <div class="tab-item" onclick="sw(4)"><div class="tab-icon">🥬</div><div class="tab-label">食材</div></div>
+</div>
+
+<script>
+var D={height:174,weight:90,age:30,activity:1.55,deficit:450};
+var S={pf:2.0,chc:4,cmc:2.5};
+var curTC="high";
+var TC_MAP=["high","mid","high","low","high","low","mid"];
+var T_MAP=["str","car","str","str","str","res","car"];
+var TC_LBL={high:"高碳",mid:"中碳",low:"低碳"};
+var TC_CSS={high:"hi",mid:"mi",low:"lo"};
+var T_LBL={str:"力量",car:"骑行",res:"休息"};
+var TC_ICO={high:"🔥",mid:"⚡",low:"🌙"};
+var DAYS=["一","二","三","四","五","六","日"];
+var $$=function(id){return document.getElementById(id)};
+function sw(tab){document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});document.querySelectorAll(".tab-item").forEach(function(t,i){t.classList.toggle("active",i===tab)});$$("page-"+tab).classList.add("active");buildGrids();calcAll();save()}
+function setTC(tc){curTC=tc;["high","mid","low"].forEach(function(t){var b=$$("cb-"+t);if(b)b.classList.toggle("s",t===tc)});buildDietDetail();calcAll();save()}
+function buildGrids(){var today=(new Date().getDay()+6)%7;var twb=$$("train-week-bar");if(twb){twb.innerHTML="";for(var i=0;i<7;i++){var t=T_MAP[i];var d=document.createElement("div");d.className="train-dow"+(i===today?" s":"");d.innerHTML='<div class="tdow-d">'+DAYS[i]+'</div><div class="tdow-l">'+T_LBL[t]+'</div>';twb.appendChild(d)}}var gridIds=["carb-grid","diet-carb-grid"];gridIds.forEach(function(gid){var g=$$(gid);if(!g)return;g.innerHTML="";for(var i=0;i<7;i++){var tc=TC_MAP[i];var d=document.createElement("div");d.className="wd-cell "+TC_CSS[tc]+(i===today?" s":"");d.innerHTML='<div class="wd-d">'+DAYS[i]+'</div><div class="wd-l">'+TC_ICO[tc]+'</div>';d.onclick=(function(ct){return function(){setTC(ct)}})(tc);g.appendChild(d)}});var hr=$$("hero-week-row");if(hr){hr.innerHTML="";for(var i=0;i<7;i++){var tc=TC_MAP[i];var d=document.createElement("div");d.className="hero-wb"+(i===today?" s":"");d.innerHTML='<div class="wd">'+DAYS[i]+'</div><div class="wl">'+(tc==="high"?"高碳":tc==="mid"?"中碳":"低碳")+'</div>';hr.appendChild(d)}}buildTrainDays();buildDietDetail();buildIngr()}
+function buildTrainDays(){var c=$$("train-days-container");if(!c)return;var days=[{d:"一",tc:"high",t:"str",n:"胸+三头",ex:["杠铃卧推 4×8-10","上斜哑铃卧推 3×10-12","双杠臂屈伸 3×力竭","绳索下压 4×12","过头臂屈伸 3×12"],note:"✅ LISS 30min",pk:0},{d:"二",tc:"mid",t:"car",n:"骑行HIIT",ex:["热身 10min","HIIT 全力1min / 休息2min ×8-10组","放松 10min","心率 160-175bpm"],note:"❌ 不加LISS",pk:0},{d:"三",tc:"high",t:"str",n:"背+二头",ex:["引体向上 4×8-10","杠铃划船 4×8-10","单臂哑铃划船 3×10","面拉 3×15","二头弯举 4×12"],note:"✅ LISS 30min",pk:0},{d:"四",tc:"low",t:"str",n:"肩+腹",ex:["坐姿推举 4×8-10","侧平举 4×12","俯身飞鸟 3×15","前平举 3×12","卷腹 4×15"],note:"✅ LISS 30min",pk:0},{d:"五",tc:"high",t:"str",n:"腿+腹",ex:["杠铃深蹲 4×8-10","哑铃弓步 3×12/腿","腿举 3×12","腿弯举 3×12","腹肌 4×15"],note:"🚫 禁止LISS！",pk:0},{d:"六",tc:"low",t:"res",n:"休息日",ex:["完全休息 · 身体恢复","可选轻走或拉伸"],note:"❌ 不加",pk:null},{d:"日",tc:"mid",t:"car",n:"骑行HIIT",ex:["热身 10min","HIIT 全力1min / 休息2min ×8-10组","放松 10min","心率 160-175bpm"],note:"❌ 不加LISS",pk:0}];var noteColor={str:"#7c3aed",car:"#2563eb",res:"#9ca3af"};c.innerHTML="";days.forEach(function(x){var badges='<span class="tdc-badge badge-'+TC_CSS[x.tc]+'">'+TC_LBL[x.tc]+'</span>';if(x.t!==x.tc)badges+='<span class="tdc-badge badge-'+x.t+'">'+T_LBL[x.t]+'</span>';var items=x.ex.map(function(m,i){return'<span class="tdc-item'+(i===x.pk?' pk':'')+'">'+m+'</span>'}).join("");var h='<div class="train-day-card"><div class="tdc-top"><div class="tdc-name">周'+x.d+' '+x.n+'</div><div class="tdc-badges">'+badges+'</div></div><div class="tdc-items">'+items+'</div><div class="tdc-note"><span class="dot" style="background:'+noteColor[x.t]+'"></span>'+x.note+'</div></div>';c.innerHTML+=h})}
+function buildDietDetail(){var c=$$("diet-detail-container");if(!c)return;var M={high:{meals:[{emoji:"🍳",name:"早餐",time:"07:00-08:00",cal:520,p:30,c:60,f:12,foods:[{n:"燕麦",p:"80g"},{n:"鸡蛋",p:"3个(150g)"},{n:"牛奶",p:"250ml"}],note:"碳水约60g · 蛋白质约30g"},{emoji:"🥩",name:"午餐",time:"12:00-13:00",cal:680,p:45,c:100,f:8,foods:[{n:"米饭",p:"260g(生)"},{n:"鸡胸肉",p:"200g"},{n:"蔬菜",p:"300g"}],note:"碳水约100g"},{emoji:"🍌",name:"练前",time:"16:30",cal:180,p:2,c:45,f:1,foods:[{n:"香蕉",p:"2根"},{n:"或米饼",p:"4片"}],note:"快碳 · 可选"},{emoji:"🐟",name:"训练后",time:"18:00-19:00",cal:600,p:50,c:70,f:10,foods:[{n:"米饭",p:"200g(生)"},{n:"三文鱼/鸡胸",p:"150g"},{n:"蔬菜",p:"200g"}],note:"黄金窗口期"},{emoji:"🍠",name:"晚餐",time:"20:30",cal:450,p:40,c:35,f:12,foods:[{n:"红薯",p:"150g"},{n:"牛肉",p:"200g"},{n:"蔬菜",p:"200g"}],note:"碳水约35g"},{emoji:"🥜",name:"睡前",time:"22:00",cal:220,p:25,c:5,f:10,foods:[{n:"酪蛋白",p:"30g"},{n:"杏仁",p:"20g"}],note:"夜间修复"}]},mid:{meals:[{emoji:"🍳",name:"早餐",time:"07:00-08:00",cal:400,p:28,c:45,f:10,foods:[{n:"燕麦",p:"60g"},{n:"鸡蛋",p:"3个(150g)"},{n:"牛奶",p:"200ml"}],note:"碳水约45g"},{emoji:"🥩",name:"午餐",time:"12:00-13:00",cal:520,p:42,c:75,f:8,foods:[{n:"米饭",p:"200g(生)"},{n:"鸡胸肉",p:"200g"},{n:"蔬菜",p:"300g"}],note:"碳水约75g"},{emoji:"🍌",name:"练前",time:"16:30",cal:90,p:1,c:23,f:0,foods:[{n:"香蕉",p:"1根(100g)"}],note:"可选"},{emoji:"🐟",name:"训练后",time:"18:00-19:00",cal:480,p:45,c:55,f:8,foods:[{n:"米饭",p:"130g(生)"},{n:"鱼肉/虾",p:"150g"},{n:"蔬菜",p:"200g"}],note:"黄金窗口期"},{emoji:"🍠",name:"晚餐",time:"20:30",cal:380,p:38,c:25,f:12,foods:[{n:"红薯",p:"120g"},{n:"牛肉",p:"180g"},{n:"蔬菜",p:"200g"}],note:"碳水约25g"},{emoji:"🥜",name:"睡前",time:"22:00",cal:200,p:25,c:4,f:10,foods:[{n:"酪蛋白",p:"30g"},{n:"坚果",p:"15g"}],note:""}]},low:{meals:[{emoji:"🍳",name:"早餐",time:"07:00-08:00",cal:450,p:35,c:5,f:32,foods:[{n:"鸡蛋",p:"4个(200g)"},{n:"牛油果",p:"1个(100g)"},{n:"蔬菜",p:"200g"}],note:"低碳水 · 高脂肪"},{emoji:"🍗",name:"午餐",time:"12:00-13:00",cal:420,p:50,c:5,f:22,foods:[{n:"鸡胸肉",p:"200g"},{n:"蔬菜",p:"300g"},{n:"橄榄油",p:"10g"}],note:"额外加橄榄油"},{emoji:"🥩",name:"晚餐",time:"18:30",cal:480,p:55,c:5,f:28,foods:[{n:"牛肉",p:"200g"},{n:"蔬菜",p:"300g"},{n:"橄榄油",p:"10g"}],note:"晚餐不加碳水"},{emoji:"🥜",name:"加餐",time:"20:30",cal:280,p:25,c:8,f:18,foods:[{n:"酪蛋白",p:"30g"},{n:"坚果",p:"30g"}],note:"低碳日主要脂肪来源"}]}};var data=M[curTC];if(!data)return;var html="";data.meals.forEach(function(meal){var foodItems=meal.foods.map(function(f){var avg=Math.round(meal.cal/meal.foods.length);return'<div class="meal-food-item"><span class="mf-name">'+f.n+'</span><div class="mf-right"><span class="mf-portion">'+f.p+'</span><span class="mf-cal">'+avg+'kcal</span></div></div>'}).join("");html+='<div class="meal-card"><div class="meal-hd"><div class="meal-name-row"><span class="meal-emoji">'+meal.emoji+'</span><div><div class="meal-name">'+meal.name+'</div><div class="meal-time">'+meal.time+'</div></div></div><div class="meal-macros"><div class="meal-macro"><div class="mm-val">'+meal.cal+'</div><div class="mm-lbl">kcal</div></div><div class="meal-macro"><div class="mm-val">'+meal.p+'g</div><div class="mm-lbl">蛋白质</div></div><div class="meal-macro"><div class="mm-val">'+meal.c+'g</div><div class="mm-lbl">碳水</div></div><div class="meal-macro"><div class="mm-val">'+meal.f+'g</div><div class="mm-lbl">脂肪</div></div></div></div><div class="meal-body">'+foodItems+(meal.note?'<div class="meal-note">'+meal.note+'</div>':'')+'</div></div>'});c.innerHTML=html}
+function buildIngr(){var c=$$("ingr-container");if(!c)return;function sec(title,rows){var th='<th>食物</th><th>蛋白质</th><th>碳水</th><th>脂肪</th><th class="kc">热量</th>';var trs=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td class="tc">'+r[1]+'</td><td class="tc">'+r[2]+'</td><td class="tc">'+r[3]+'</td><td class="kc">'+r[4]+'</td></tr>'}).join("");return'<div class="card"><div class="card-title"><span class="ct-dot"></span>'+title+'</div><table class="ingr-table"><thead><tr>'+th+'</tr></thead><tbody>'+trs+'</tbody></table></div>'}var veg=["西兰花","菠菜","生菜","菜心","紫甘蓝","黄瓜","番茄","香菇","芦笋","西葫芦"];var vegTags=veg.map(function(v){return'<span class="veg-tag">'+v+'</span>'}).join("");c.innerHTML=sec("🥩 蛋白质类（每100g生重）",[["鸡胸肉","31g","0g","3.6g","165"],["鸡蛋全蛋","13g","1g","11g","155"],["牛肉里脊","22g","0g","8g","160"],["三文鱼","20g","0g","8g","160"],["巴沙鱼","20g","0g","2g","95"],["牛奶全脂","3g","5g","3g","65"],["酪蛋白","80g","5g","2g","360"],["虾仁","20g","0g","0.5g","85"]])+sec("🍚 碳水类（每100g生重）",[["燕麦","13g","60g","7g","340"],["白米饭","7g","75g","1g","330"],["红薯","1.6g","20g","0g","86"],["香蕉","1g","23g","0g","93"],["全麦面包","13g","43g","4g","250"]])+sec("🥑 脂肪类",[["橄榄油","0g","0g","100g","884"],["杏仁","21g","22g","50g","590"],["牛油果","2g","9g","15g","160"],["花生酱","25g","16g","50g","590"],["核桃","15g","14g","65g","654"]])+'<div class="card"><div class="card-title"><span class="ct-dot" style="background:#10b981"></span>🥬 蔬菜类（低碳水，随便吃）</div><div class="veg-tags">'+vegTags+'</div></div>'}
+function calcAll(){var h=+$$("d-height").value,w=+$$("d-weight").value,a=+$$("d-age").value,act=+$$("d-activity").value,def=+$$("d-deficit").value,pf=+$$("d-profactor").value,chc=+$$("d-hccarb").value,cmc=+$$("d-mccarb").value;D={height:h,weight:w,age:a,activity:act,deficit:def};S={pf:pf,chc:chc,cmc:cmc};var bmr=10*w+6.25*h-5*a+5;var tdee=bmr*act;var goal=tdee-def;var prot=w*pf;var hC=w*chc,hF=w*0.7,hK=prot*4+hC*4+hF*9;var mC=w*cmc,mF=w*0.85,mK=prot*4+mC*4+mF*9;var lC=w*1,lF=w*1.1,lK=prot*4+lC*4+lF*9;var bmi=(w/((h/100)*(h/100))).toFixed(1);var tc=curTC;var tcC=tc==="high"?hC:tc==="mid"?mC:lC;var tcF=tc==="high"?hF:tc==="mid"?mF:lF;var tcK=tc==="high"?hK:tc==="mid"?mK:lK;var pill=tc==="high"?"🔥 高碳日":tc==="mid"?"⚡ 中碳日":"🌙 低碳日";$$("hero-kcal").textContent=Math.round(tcK);$$("hero-p").textContent=Math.round(prot);$$("hero-c").textContent=Math.round(tcC);$$("hero-f").textContent=Math.round(tcF);var hp=$$("hero-pill");if(hp)hp.textContent=pill;$$("diet-kcal").textContent=Math.round(tcK);var dp=$$("diet-p"),dc=$$("diet-c"),df=$$("diet-f");if(dp)dp.textContent=Math.round(prot);if(dc)dc.textContent=Math.round(tcC);if(df)df.textContent=Math.round(tcF);var dip=$$("diet-pill");if(dip)dip.textContent=pill;var bmis=$$("f0-bmi");if(bmis)bmis.textContent=bmi;var fbmr=$$("f0-bmr");if(fbmr)fbmr.textContent=Math.round(bmr);var ftdee=$$("f0-tdee");if(ftdee)ftdee.textContent=Math.round(tdee);var fg=$$("f0-goal");if(fg)fg.textContent=Math.round(goal);var fdef=$$("f0-def");if(fdef)fdef.textContent=def;$$("f0-hc-k").textContent=Math.round(hK);$$("f0-hc-c").textContent=Math.round(hC);$$("f0-hc-f").textContent=Math.round(hF);$$("f0-mc-k").textContent=Math.round(mK);$$("f0-mc-c").textContent=Math.round(mC);$$("f0-mc-f").textContent=Math.round(mF);$$("f0-lc-k").textContent=Math.round(lK);$$("f0-lc-c").textContent=Math.round(lC);$$("f0-lc-f").textContent=Math.round(lF);$$("f0-pf").textContent=pf+" g/kg";$$("f0-hcc").textContent=chc+" g/kg";$$("f0-mcc").textContent=cmc+" g/kg";var fbm=$$("f0-formula-bmr");if(fbm)fbm.textContent="10×"+w+"+6.25×"+h+"-5×"+a+"+5="+Math.round(bmr)+" kcal";var ftm=$$("f0-formula-tdee");if(ftm)ftm.textContent=Math.round(bmr)+"×"+act+"="+Math.round(tdee)+" kcal";var fgm=$$("f0-formula-goal");if(fgm)fgm.textContent=Math.round(tdee)+"-"+def+"="+Math.round(goal)+" kcal";var fhc=$$("f0-formula-hc");if(fhc)fhc.textContent=Math.round(prot)+"×4+"+Math.round(hC)+"×4+"+Math.round(hF)+"×9="+Math.round(hK)+" kcal";var fmc=$$("f0-formula-mc");if(fmc)fmc.textContent=Math.round(prot)+"×4+"+Math.round(mC)+"×4+"+Math.round(mF)+"×9="+Math.round(mK)+" kcal";var flc=$$("f0-formula-lc");if(flc)flc.textContent=Math.round(prot)+"×4+"+Math.round(lC)+"×4+"+Math.round(lF)+"×9="+Math.round(lK)+" kcal";var sBmi=$$("s-bmi"),sBmr=$$("s-bmr"),sTdee=$$("s-tdee"),sGoal=$$("s-goal");if(sBmi)sBmi.textContent=bmi;if(sBmr)sBmr.textContent=Math.round(bmr);if(sTdee)sTdee.textContent=Math.round(tdee);if(sGoal)sGoal.textContent=Math.round(goal)+" kcal";var sHc=$$("s-hc");if(sHc)sHc.textContent=Math.round(hK)+" / "+Math.round(hC)+"g碳 / "+Math.round(hF)+"g脂";var sMc=$$("s-mc");if(sMc)sMc.textContent=Math.round(mK)+" / "+Math.round(mC)+"g碳 / "+Math.round(mF)+"g脂";var sLc=$$("s-lc");if(sLc)sLc.textContent=Math.round(lK)+" / "+Math.round(lC)+"g碳 / "+Math.round(lF)+"g脂"}
+function save(){try{localStorage.setItem("fatLossPlan3",JSON.stringify({D:D,S:S,curTC:curTC}))}catch(e){}}
+function load(){try{var raw=localStorage.getItem("fatLossPlan3");if(raw){var d=JSON.parse(raw);if(d.D){$$("d-height").value=d.D.height||174;$$("d-weight").value=d.D.weight||90;$$("d-age").value=d.D.age||30;$$("d-activity").value=d.D.activity||1.55;$$("d-deficit").value=d.D.deficit||450}if(d.S){$$("d-profactor").value=d.S.pf||2;$$("d-hccarb").value=d.S.chc||4;$$("d-mccarb").value=d.S.cmc||2.5}curTC=d.curTC||"high"}}catch(e){}}
+document.addEventListener("DOMContentLoaded",function(){load();buildGrids();setTC(curTC);calcAll()});
+</script>
 </body>
 </html>
