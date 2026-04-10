@@ -10,15 +10,14 @@
 body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;max-width:520px;margin:0 auto;padding-bottom:88px;-webkit-font-smoothing:antialiased}
 input,select,textarea{font-family:inherit}
 .page{display:none;padding:16px 14px 12px}.page.active{display:block}
-.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:6px 0;z-index:200;box-shadow:0 -2px 16px rgba(0,0,0,.06)}
+.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:flex-end;padding:6px 0;z-index:200;box-shadow:0 -2px 16px rgba(0,0,0,.06)}
 .tab-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px;color:var(--text-secondary);cursor:pointer;transition:color .2s}
 .tab-item .tab-icon{font-size:1.375rem;line-height:1;height:28px;display:flex;align-items:center;justify-content:center}
-.tab-item .tab-label{font-size:.75rem;font-weight:500;white-space:nowrap}
+.tab-item .tab-label{font-size:.6875rem;font-weight:500;white-space:nowrap}
 .tab-item.active{color:var(--primary)}.tab-item.active .tab-label{font-weight:600}
-.tab-item.center-tab{position:relative}
-.tab-item.center-tab .tab-icon{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.4)}
-.tab-item.center-tab .tab-icon svg{width:28px;height:28px}
-.tab-item.center-tab .tab-label{margin-top:8px}
+.tab-item.center-tab{position:relative;padding-top:0}
+.tab-item.center-tab .tab-icon{margin-top:-8px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.4)}
+.tab-item.center-tab .tab-icon svg{width:24px;height:24px}
 .hero-card{background:linear-gradient(145deg,#6366f1,#818cf8);border-radius:var(--radius-xl);padding:18px 16px 16px;color:#fff;margin-bottom:14px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
 .hero-card::after{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.06);border-radius:50%}
 .hero-card .hero-eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
