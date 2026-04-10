@@ -18,17 +18,17 @@ input,select,textarea{font-family:inherit}
 .tab-item.center-tab{position:relative}
 .tab-item.center-tab .tab-icon{margin-top:-19px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.4);transition:none}
 .tab-item.center-tab .tab-icon svg{width:26px;height:26px}
-.hero-card{background:linear-gradient(145deg,#6366f1,#818cf8);border-radius:var(--radius-xl);padding:18px 16px 16px;color:#fff;margin-bottom:14px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
-.hero-card::after{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.06);border-radius:50%}
-.hero-card .hero-eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.hero-card .hero-pill{font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.2)}
-.hero-kcal-big{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:2px}
+.hero-card{background:linear-gradient(145deg,#6366f1,#818cf8);border-radius:var(--radius-xl);padding:20px 18px 18px;color:#fff;margin-bottom:14px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.hero-card::after{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,.08);border-radius:50%}
+.hero-card .hero-eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.hero-card .hero-pill{font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.25)}
+.hero-kcal-big{font-size:3rem;font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:4px}
 .hero-kcal-sub{font-size:.75rem;opacity:.7;margin-bottom:14px}
 .hero-macros{display:flex;gap:0}
-.hero-mi{flex:1;text-align:center;padding:10px 0;border-left:1px solid rgba(255,255,255,.2)}
+.hero-mi{flex:1;text-align:center;padding:12px 0;border-left:1px solid rgba(255,255,255,.2)}
 .hero-mi:first-child{border-left:none}
-.hero-mi-val{font-size:1.5rem;font-weight:800;line-height:1}
-.hero-mi-lbl{font-size:.75rem;opacity:.65;margin-top:3px}
+.hero-mi-val{font-size:1.6rem;font-weight:800;line-height:1}
+.hero-mi-lbl{font-size:.8rem;opacity:.7;margin-top:4px}
 .hero-week-row{display:flex;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15)}
 .hero-wb{flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,.1);border-radius:var(--radius-md);font-size:.75rem;line-height:1.5;cursor:pointer;transition:all .2s;border:2px solid transparent;min-width:38px}
 .hero-wb.s{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.97);color:var(--primary);font-weight:700;transform:scale(1.05)}
@@ -153,19 +153,20 @@ input,select,textarea{font-family:inherit}
 .hero-ds-day.selected{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.95);color:var(--primary);font-weight:700;transform:scale(1.08)}
 
 .tc-viz-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px}
-.tc-viz-item{background:var(--bg);border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent}
-.tc-viz-item:hover{transform:translateY(-2px)}
-.tc-viz-item.active{border-color:currentColor;background:#fff}
-.tc-viz-ring{position:relative;width:90px;height:90px;margin:0 auto 10px}
-.tc-ring-svg{width:90px;height:90px;transform:rotate(-90deg)}
+.tc-viz-item{background:var(--bg);border-radius:14px;padding:14px 6px;text-align:center;cursor:pointer;border:2px solid transparent}
+.tc-viz-item.active{border-color:var(--primary);background:#fff}
+.tc-viz-ring{position:relative;width:100px;height:100px;margin:0 auto 8px}
+.tc-ring-svg{width:100px;height:100px;transform:rotate(-90deg)}
 .tc-ring-bar{transition:stroke-dasharray .4s ease}
-.tc-viz-kcal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:800;color:var(--text)}
-.tc-viz-label{font-size:.75rem;font-weight:700;margin-bottom:6px;color:var(--text)}
-.tc-viz-macros{font-size:.6875rem;color:var(--text-secondary);line-height:1.6}
+.tc-viz-kcal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:800;color:var(--text)}
+.tc-viz-label{font-size:.875rem;font-weight:700;margin-bottom:4px;color:var(--text)}
+.tc-viz-macros{font-size:.75rem;color:var(--text-secondary);line-height:1.5}
 #tc-viz-high{color:#dc2626}#tc-viz-mid{color:#d97706}#tc-viz-low{color:#059669}
 </style>
 </head>
 <body>
+<div id="save-toast" style="position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-10px);background:#10b981;color:#fff;padding:8px 20px;border-radius:20px;font-size:.875rem;font-weight:600;opacity:0;pointer-events:none;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.15)">✓ 已保存</div>
+<style>#save-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}</style>
 
 <!-- PAGE 0: 公式计算 -->
 <div id="page-0" class="page">
@@ -247,41 +248,41 @@ input,select,textarea{font-family:inherit}
       <div class="tc-viz-item" id="tc-viz-high" onclick="setTC('high')">
         <div class="tc-viz-ring">
           <svg viewBox="0 0 44 44" class="tc-ring-svg">
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(220,38,38,0.15)" stroke-width="3.5"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-dasharray="60 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-high-p"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="40 100" stroke-dashoffset="-35" class="tc-ring-bar" id="ring-high-c"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="20 100" stroke-dashoffset="-75" class="tc-ring-bar" id="ring-high-f"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(99,102,241,0.12)" stroke-width="3.5"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#4f46e5" stroke-width="3.5" stroke-dasharray="60 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-high-p"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#818cf8" stroke-width="3.5" stroke-dasharray="40 100" stroke-dashoffset="-35" class="tc-ring-bar" id="ring-high-c"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#c7d2fe" stroke-width="3.5" stroke-dasharray="20 100" stroke-dashoffset="-75" class="tc-ring-bar" id="ring-high-f"/>
           </svg>
           <div class="tc-viz-kcal" id="tc-viz-high-kcal">--</div>
         </div>
         <div class="tc-viz-label">🔥 高碳日</div>
-        <div class="tc-viz-macros"><span style="color:#dc2626" id="tc-viz-high-p">--g</span> · <span style="color:#f59e0b" id="tc-viz-high-c">--g</span> · <span style="color:#10b981" id="tc-viz-high-f">--g</span></div>
+        <div class="tc-viz-macros"><span style="color:#4f46e5" id="tc-viz-high-p">--g</span> · <span style="color:#818cf8" id="tc-viz-high-c">--g</span> · <span style="color:#a5b4fc" id="tc-viz-high-f">--g</span></div>
       </div>
       <div class="tc-viz-item" id="tc-viz-mid" onclick="setTC('mid')">
         <div class="tc-viz-ring">
           <svg viewBox="0 0 44 44" class="tc-ring-svg">
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(217,119,6,0.15)" stroke-width="3.5"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#d97706" stroke-width="3.5" stroke-dasharray="50 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-mid-p"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="35 100" stroke-dashoffset="-25" class="tc-ring-bar" id="ring-mid-c"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="25 100" stroke-dashoffset="-60" class="tc-ring-bar" id="ring-mid-f"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(99,102,241,0.12)" stroke-width="3.5"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#4f46e5" stroke-width="3.5" stroke-dasharray="50 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-mid-p"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#818cf8" stroke-width="3.5" stroke-dasharray="35 100" stroke-dashoffset="-25" class="tc-ring-bar" id="ring-mid-c"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#c7d2fe" stroke-width="3.5" stroke-dasharray="25 100" stroke-dashoffset="-60" class="tc-ring-bar" id="ring-mid-f"/>
           </svg>
           <div class="tc-viz-kcal" id="tc-viz-mid-kcal">--</div>
         </div>
         <div class="tc-viz-label">⚡ 中碳日</div>
-        <div class="tc-viz-macros"><span style="color:#dc2626" id="tc-viz-mid-p">--g</span> · <span style="color:#f59e0b" id="tc-viz-mid-c">--g</span> · <span style="color:#10b981" id="tc-viz-mid-f">--g</span></div>
+        <div class="tc-viz-macros"><span style="color:#4f46e5" id="tc-viz-mid-p">--g</span> · <span style="color:#818cf8" id="tc-viz-mid-c">--g</span> · <span style="color:#a5b4fc" id="tc-viz-mid-f">--g</span></div>
       </div>
       <div class="tc-viz-item" id="tc-viz-low" onclick="setTC('low')">
         <div class="tc-viz-ring">
           <svg viewBox="0 0 44 44" class="tc-ring-svg">
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(5,150,105,0.15)" stroke-width="3.5"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#059669" stroke-width="3.5" stroke-dasharray="50 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-low-p"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="10 100" stroke-dashoffset="-25" class="tc-ring-bar" id="ring-low-c"/>
-            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="40 100" stroke-dashoffset="-35" class="tc-ring-bar" id="ring-low-f"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="rgba(99,102,241,0.12)" stroke-width="3.5"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#4f46e5" stroke-width="3.5" stroke-dasharray="50 100" stroke-dashoffset="25" class="tc-ring-bar" id="ring-low-p"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#818cf8" stroke-width="3.5" stroke-dasharray="10 100" stroke-dashoffset="-25" class="tc-ring-bar" id="ring-low-c"/>
+            <circle cx="22" cy="22" r="19.5" fill="none" stroke="#c7d2fe" stroke-width="3.5" stroke-dasharray="40 100" stroke-dashoffset="-35" class="tc-ring-bar" id="ring-low-f"/>
           </svg>
           <div class="tc-viz-kcal" id="tc-viz-low-kcal">--</div>
         </div>
         <div class="tc-viz-label">🌙 低碳日</div>
-        <div class="tc-viz-macros"><span style="color:#dc2626" id="tc-viz-low-p">--g</span> · <span style="color:#f59e0b" id="tc-viz-low-c">--g</span> · <span style="color:#10b981" id="tc-viz-low-f">--g</span></div>
+        <div class="tc-viz-macros"><span style="color:#4f46e5" id="tc-viz-low-p">--g</span> · <span style="color:#818cf8" id="tc-viz-low-c">--g</span> · <span style="color:#a5b4fc" id="tc-viz-low-f">--g</span></div>
       </div>
     </div>
     <div class="tip-box" style="margin-top:12px">💡 点击任一圆环切换碳日类型</div>
@@ -381,7 +382,8 @@ function calcAll(){var h=+$$("d-height").value,w=+$$("d-weight").value,a=+$$("d-
   var ageFactor=1;if(a>=50)ageFactor=0.95;if(a>=60)ageFactor=0.9;if(a>=70)ageFactor=0.85;
   var bmr=(10*w+6.25*h-5*a+5)*ageFactor;var tdee=bmr*act;var goal=tdee-def;var prot=w*pf;var hC=w*chc,hF=w*0.7,hK=prot*4+hC*4+hF*9;var mC=w*cmc,mF=w*0.85,mK=prot*4+mC*4+mF*9;var lC=w*1,lF=w*1.1,lK=prot*4+lC*4+lF*9;var bmi=(w/((h/100)*(h/100))).toFixed(1);var tc=curTC;var tcC=tc==="high"?hC:tc==="mid"?mC:lC;var tcF=tc==="high"?hF:tc==="mid"?mF:lF;var tcK=tc==="high"?hK:tc==="mid"?mK:lK;var pill=tc==="high"?"🔥 高碳":tc==="mid"?"⚡ 中碳":"🌙 低碳";$$("hero-kcal").textContent=Math.round(tcK);$$("hero-p").textContent=Math.round(prot);$$("hero-c").textContent=Math.round(tcC);$$("hero-f").textContent=Math.round(tcF);var hp=$$("hero-pill");if(hp)hp.textContent=pill;var hdl=$$("hero-date-label");if(hdl)hdl.textContent=curHeroDay>=0?"周"+DAYS[curHeroDay]+"营养目标":"今日营养目标";$$("diet-kcal").textContent=Math.round(tcK);var dp=$$("diet-p"),dc=$$("diet-c"),df=$$("diet-f");if(dp)dp.textContent=Math.round(prot);if(dc)dc.textContent=Math.round(tcC);if(df)df.textContent=Math.round(tcF);var dip=$$("diet-pill");if(dip)dip.textContent=pill;var bmis=$$("f0-bmi");if(bmis)bmis.textContent=bmi;var fbmr=$$("f0-bmr");if(fbmr)fbmr.textContent=Math.round(bmr);var ftdee=$$("f0-tdee");if(ftdee)ftdee.textContent=Math.round(tdee);var fg=$$("f0-goal");if(fg)fg.textContent=Math.round(goal);var fdef=$$("f0-def");if(fdef)fdef.textContent=def;$$("f0-hc-k").textContent=Math.round(hK);$$("f0-hc-c").textContent=Math.round(hC);$$("f0-hc-f").textContent=Math.round(hF);$$("f0-mc-k").textContent=Math.round(mK);$$("f0-mc-c").textContent=Math.round(mC);$$("f0-mc-f").textContent=Math.round(mF);$$("f0-lc-k").textContent=Math.round(lK);$$("f0-lc-c").textContent=Math.round(lC);$$("f0-lc-f").textContent=Math.round(lF);$$("f0-pf").textContent=pf+" g/kg";$$("f0-hcc").textContent=chc+" g/kg";$$("f0-mcc").textContent=cmc+" g/kg";var ageFactorDisplay=a>=50?"×"+(a>=60?(a>=70?"0.85":"0.9"):"0.95"):"";
   var fbm=$$("f0-formula-bmr");if(fbm)fbm.textContent="(10×"+w+"+6.25×"+h+"-5×"+a+"+5)"+ageFactorDisplay+"="+Math.round(bmr)+" kcal";var ftm=$$("f0-formula-tdee");if(ftm)ftm.textContent=Math.round(bmr)+"×"+act+"="+Math.round(tdee)+" kcal";var fgm=$$("f0-formula-goal");if(fgm)fgm.textContent=Math.round(tdee)+"-"+def+"="+Math.round(goal)+" kcal";var fhc=$$("f0-formula-hc");if(fhc)fhc.textContent=Math.round(prot)+"×4+"+Math.round(hC)+"×4+"+Math.round(hF)+"×9="+Math.round(hK)+" kcal";var fmc=$$("f0-formula-mc");if(fmc)fmc.textContent=Math.round(prot)+"×4+"+Math.round(mC)+"×4+"+Math.round(mF)+"×9="+Math.round(mK)+" kcal";var flc=$$("f0-formula-lc");if(flc)flc.textContent=Math.round(prot)+"×4+"+Math.round(lC)+"×4+"+Math.round(lF)+"×9="+Math.round(lK)+" kcal";var sBmi=$$("s-bmi"),sBmr=$$("s-bmr"),sTdee=$$("s-tdee"),sGoal=$$("s-goal");if(sBmi)sBmi.textContent=bmi;if(sBmr)sBmr.textContent=Math.round(bmr);if(sTdee)sTdee.textContent=Math.round(tdee);if(sGoal)sGoal.textContent=Math.round(goal)+" kcal";var sHc=$$("s-hc");if(sHc)sHc.textContent=Math.round(hK)+" / "+Math.round(hC)+"g碳 / "+Math.round(hF)+"g脂";var sMc=$$("s-mc");if(sMc)sMc.textContent=Math.round(mK)+" / "+Math.round(mC)+"g碳 / "+Math.round(mF)+"g脂";var sLc=$$("s-lc");if(sLc)sLc.textContent=Math.round(lK)+" / "+Math.round(lC)+"g碳 / "+Math.round(lF)+"g脂"}
-function save(){try{localStorage.setItem("fatLossPlan3",JSON.stringify({D:D,S:S,curTC:curTC,curHeroDay:curHeroDay}))}catch(e){}}
+function save(){try{localStorage.setItem("fatLossPlan3",JSON.stringify({D:D,S:S,curTC:curTC,curHeroDay:curHeroDay}));showSaveFeedback()}catch(e){}}
+function showSaveFeedback(){var el=$$("save-toast");if(el){el.classList.add("show");setTimeout(function(){el.classList.remove("show")},1200)}}
 function load(){try{var raw=localStorage.getItem("fatLossPlan3");if(raw){var d=JSON.parse(raw);if(d.D){$$("d-height").value=d.D.height||174;$$("d-weight").value=d.D.weight||90;$$("d-age").value=d.D.age||30;$$("d-activity").value=d.D.activity||1.55;$$("d-deficit").value=d.D.deficit||450}if(d.S){$$("d-profactor").value=d.S.pf||2;$$("d-hccarb").value=d.S.chc||4;$$("d-mccarb").value=d.S.cmc||2.5}curTC=d.curTC||"high";curHeroDay=(d.curHeroDay!=null)?d.curHeroDay:(new Date().getDay()+6)%7}}catch(e){}}
 document.addEventListener("DOMContentLoaded",function(){load();buildGrids();setTC(curTC);calcAll();buildTCViz()});
 </script>
