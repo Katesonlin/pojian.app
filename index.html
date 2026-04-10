@@ -380,7 +380,7 @@ function calcAll(){var h=+$$("d-height").value,w=+$$("d-weight").value,a=+$$("d-
 function save(){try{localStorage.setItem("fatLossPlan3",JSON.stringify({D:D,S:S,curTC:curTC,curHeroDay:curHeroDay}));showSaveFeedback()}catch(e){}}
 function showSaveFeedback(){var el=$$("save-toast");if(el){el.classList.add("show");setTimeout(function(){el.classList.remove("show")},1200)}}
 function load(){try{var raw=localStorage.getItem("fatLossPlan3");if(raw){var d=JSON.parse(raw);if(d.D){$$("d-height").value=d.D.height||174;$$("d-weight").value=d.D.weight||90;$$("d-age").value=d.D.age||30;$$("d-activity").value=d.D.activity||1.55;$$("d-deficit").value=d.D.deficit||450}if(d.S){$$("d-profactor").value=d.S.pf||2;$$("d-hccarb").value=d.S.chc||4;$$("d-mccarb").value=d.S.cmc||2.5}curTC=d.curTC||"high";curHeroDay=(d.curHeroDay!=null)?d.curHeroDay:(new Date().getDay()+6)%7}}catch(e){}}
-}document.addEventListener("DOMContentLoaded",function(){load();buildGrids();setTC(curTC);calcAll()});
+document.addEventListener("DOMContentLoaded",function(){load();buildGrids();setTC(curTC);calcAll()});
 </script>
 </body>
 </html>
