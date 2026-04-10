@@ -7,7 +7,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#6366f1;--primary-light:#818cf8;--primary-dark:#4f46e5;--accent:#f59e0b;--bg:#f5f6fa;--surface:#fff;--text:#1e1e2e;--text-secondary:#6b7280;--text-hint:#9ca3af;--border:#e5e7eb;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(99,102,241,.15);--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px}
-body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;max-width:520px;margin:0 auto;padding-bottom:88px;-webkit-font-smoothing:antialiased}
+body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:#f9fafb;color:var(--text);font-size:16px;line-height:1.6;max-width:520px;margin:0 auto;padding-bottom:88px;-webkit-font-smoothing:antialiased}
 input,select,textarea{font-family:inherit}
 .page{display:none;padding:16px 14px 12px}.page.active{display:block}
 .tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:6px 0;z-index:200;box-shadow:0 -2px 16px rgba(0,0,0,.06);transition:none}
@@ -34,7 +34,7 @@ input,select,textarea{font-family:inherit}
 .hero-wb.s{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.97);color:var(--primary);font-weight:700;transform:scale(1.05)}
 .hero-wb .wd{opacity:.6}.hero-wb.s .wd{opacity:.7}
 .hero-wb .wl{font-weight:700;margin-top:2px}.hero-wb.s .wl{color:var(--primary)}
-.card{background:var(--surface);border-radius:var(--radius-xl);padding:18px 16px;margin-bottom:12px;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,.06)}
+.card{background:#fff;border-radius:var(--radius-xl);padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #f3f4f6}
 .card-title{display:flex;align-items:center;gap:6px;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:12px;padding-bottom:10px;border-bottom:1.5px solid var(--bg)}
 .card-title .ct-dot{width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0}
 .stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center}
@@ -252,8 +252,8 @@ input,select,textarea{font-family:inherit}
     </div>
     <div class="fi" style="grid-column:1/-1;margin-top:8px;padding-top:12px;border-top:1px solid var(--border);text-align:center;color:#6366f1;font-weight:600" id="progress-info"></div>
   </div>
-  <div class="card" style="background:linear-gradient(145deg,#f0f4ff,#eef2ff);border:1px solid #e0e7ff">
-    <div class="card-title" style="color:#4f46e5"><span class="ct-dot" style="background:#6366f1"></span>碳循环分析</div>
+  <div class="card">
+    <div class="card-title"><span class="ct-dot" style="background:#f59e0b"></span>碳循环分析</div>
     <div class="tc-viz-grid">
       <div class="tc-viz-item" id="tc-viz-high" onclick="setTC('high')">
         <div class="tc-viz-ring">
