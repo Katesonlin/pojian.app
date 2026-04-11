@@ -176,7 +176,7 @@ input,select,textarea{font-family:inherit}
 
 <!-- PAGE 0: 公式计算 -->
 <div id="page-0" class="page">
-  <p class="page-hint">联动身体数据页 · 实时更新</p>
+  <p class="page-hint">联动基本参数页 · 实时更新</p>
   <div class="formula-grid">
     <div class="formula-card"><div class="fc-title">BMI 指数</div><div class="fc-val" id="f0-bmi">--</div><div class="fc-sub">体脂参考</div></div>
     <div class="formula-card"><div class="fc-title">BMR 基础代谢</div><div class="fc-val" id="f0-bmr">--</div><div class="fc-sub">kcal / 天</div></div>
@@ -208,7 +208,7 @@ input,select,textarea{font-family:inherit}
       <div class="sum-row"><span class="sum-lbl">中碳日热量</span><span class="sum-val" id="f0-formula-mc">--</span></div>
       <div class="sum-row"><span class="sum-lbl">低碳日热量</span><span class="sum-val" id="f0-formula-lc">--</span></div>
     </div>
-    <div class="tip-box">💡 在「身体数据」页修改参数，所有数值自动联动</div>
+    <div class="tip-box">💡 在「基本参数」页修改参数，所有数值自动联动</div>
   </div>
 </div>
 
@@ -219,7 +219,7 @@ input,select,textarea{font-family:inherit}
   <div id="train-days-container"></div>
 </div>
 
-<!-- PAGE 2: 身体数据（主页面） -->
+<!-- PAGE 2: 基本参数（主页面） -->
 <div id="page-2" class="page active">
   <div class="hero-card" id="hero-card" onclick="cycleTC()">
     <div class="hero-eyebrow">
@@ -236,9 +236,9 @@ input,select,textarea{font-family:inherit}
     <div class="hero-day-strip" id="hero-day-strip"></div>
   </div>
 
-  <!-- 身体数据表单卡片 -->
+  <!-- 基本参数表单卡片 -->
   <div class="card">
-    <div class="card-title"><span class="ct-dot"></span>身体数据</div>
+    <div class="card-title"><span class="ct-dot"></span>基本参数</div>
     <div class="form-grid">
       <div class="fi"><label>性别</label><select id="d-gender" onchange="calcAll()"><option value="male" selected>男</option><option value="female">女</option></select></div>
       <div class="fi"><label>身高（cm）</label><input type="number" id="d-height" value="174" min=100 max=220 oninput="calcAll()"></div>
@@ -366,7 +366,7 @@ input,select,textarea{font-family:inherit}
 <div class="tab-bar">
   <div class="tab-item" onclick="sw(0)"><div class="tab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg></div><div class="tab-label">公式计算</div></div>
   <div class="tab-item" onclick="sw(1)"><div class="tab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11v11h-11z"/><path d="M6.5 6.5L1 12l5.5 5.5M17.5 6.5L23 12l-5.5 5.5"/><line x1="12" y1="1" x2="12" y2="6.5"/><line x1="12" y1="17.5" x2="12" y2="23"/><line x1="1" y1="12" x2="6.5" y2="12"/><line x1="17.5" y1="12" x2="23" y2="12"/></svg></div><div class="tab-label">训练</div></div>
-  <div class="tab-item center-tab" onclick="sw(2)"><div class="tab-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.79 2 8 3.79 8 6s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/><path d="M20 20H4a2 2 0 0 1-2-2v-1a8 8 0 0 1 8-8h4a8 8 0 0 1 8 8v1a2 2 0 0 1-2 2z"/></svg></div><div class="tab-label">身体数据</div></div>
+  <div class="tab-item center-tab" onclick="sw(2)"><div class="tab-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.79 2 8 3.79 8 6s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/><path d="M20 20H4a2 2 0 0 1-2-2v-1a8 8 0 0 1 8-8h4a8 8 0 0 1 8 8v1a2 2 0 0 1-2 2z"/></svg></div><div class="tab-label">基本参数</div></div>
   <div class="tab-item" onclick="sw(3)"><div class="tab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div><div class="tab-label">饮食计划</div></div>
   <div class="tab-item" onclick="sw(4)"><div class="tab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19a9.89 9.89 0 0 1 17 0"/><path d="M4 15a5.83 5.83 0 0 1 13 0"/><path d="M6 11a2.86 2.86 0 0 1 9 0"/><path d="M12 2v18"/></svg></div><div class="tab-label">食材</div></div>
 </div>
