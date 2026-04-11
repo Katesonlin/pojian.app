@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>页面不存在 · 破茧</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#6366f1;--primary-light:#818cf8;--primary-dark:#4f46e5;--accent:#f59e0b;--bg:#f5f6fa;--surface:#fff;--text:#1e1e2e;--text-secondary:#6b7280;--text-hint:#9ca3af;--border:#e5e7eb;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(99,102,241,.15);--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px}
+body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:linear-gradient(145deg,#f5f6fa,#eef2ff);color:var(--text);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;-webkit-font-smoothing:antialiased}
+.error-container{text-align:center;max-width:360px}
+.error-icon{font-size:5rem;margin-bottom:20px;display:block}
+.error-code{font-size:6rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:16px}
+.error-title{font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:12px}
+.error-desc{font-size:.875rem;color:var(--text-secondary);margin-bottom:28px;line-height:1.7}
+.error-card{background:var(--surface);border-radius:var(--radius-xl);padding:24px 20px;box-shadow:var(--shadow-lg);border:1px solid rgba(99,102,241,.1);margin-bottom:24px}
+.error-card p{font-size:.875rem;color:var(--text-secondary);margin-bottom:8px}
+.error-card p:last-child{margin-bottom:0}
+.btn-home{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;border-radius:var(--radius-lg);font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 12px rgba(99,102,241,.35);transition:all .2s}
+.btn-home:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(99,102,241,.45)}
+.btn-home:active{transform:translateY(0)}
+.egg{margin-top:32px;font-size:.75rem;color:var(--text-hint)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.floating{animation:float 3s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div class="error-container">
+  <span class="error-icon floating">🦋</span>
+  <div class="error-code">404</div>
+  <h1 class="error-title">页面不存在</h1>
+  <p class="error-desc">抱歉，你访问的页面已经飞走了<br>可能已移除或地址有误</p>
+  
+  <div class="error-card">
+    <p>💡 可尝试以下方式：</p>
+    <p>• 检查网址是否正确</p>
+    <p>• 返回首页重新开始</p>
+    <p>• 如果问题持续请联系我们</p>
+  </div>
+  
+  <a href="./" class="btn-home">
+    <span>🏠</span>
+    <span>返回首页</span>
+  </a>
+  
+  <p class="egg">破茧 · 碳循环减脂</p>
+</div>
+</body>
+</html>
