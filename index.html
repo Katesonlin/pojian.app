@@ -152,16 +152,22 @@ input,select,textarea{font-family:inherit}
 .hero-ds-day.today{background:rgba(255,255,255,.97);color:var(--primary);font-weight:700;transform:scale(1.1);box-shadow:0 2px 8px rgba(99,102,241,.3)}
 .hero-ds-day.selected{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.95);color:var(--primary);font-weight:700;transform:scale(1.08)}
 
-.tc-viz-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px}
-.tc-viz-item{background:var(--bg);border-radius:14px;padding:14px 6px;text-align:center;cursor:pointer;border:2px solid transparent}
-.tc-viz-item.active{border-color:var(--primary) !important;background:#fff;box-shadow:0 0 0 3px rgba(99,102,241,0.15)}
-.tc-viz-ring{position:relative;width:100px;height:100px;margin:0 auto 8px}
-.tc-ring-svg{width:100px;height:100px;transform:rotate(-90deg)}
-.tc-ring-bar{transition:stroke-dasharray .4s ease}
-.tc-viz-kcal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:800;color:var(--text)}
-.tc-viz-label{font-size:.875rem;font-weight:700;margin-bottom:4px;color:var(--text)}
+.tc-viz-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px}
+.tc-viz-item{background:var(--bg);border-radius:16px;padding:16px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+.tc-viz-item::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(99,102,241,0));opacity:0;transition:opacity .3s}
+.tc-viz-item.active{background:#fff;border-color:var(--primary);box-shadow:0 4px 20px rgba(99,102,241,0.25);transform:scale(1.02)}
+.tc-viz-item.active::before{opacity:1}
+.tc-viz-item:hover:not(.active){transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.tc-viz-ring{position:relative;width:110px;height:110px;margin:0 auto 10px}
+.tc-ring-svg{width:110px;height:110px;transform:rotate(-90deg)}
+.tc-ring-bar{transition:stroke-dasharray .6s cubic-bezier(0.4,0,0.2,1),stroke .3s ease}
+.tc-viz-kcal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:18px;font-weight:800;color:var(--text);transition:all .3s}
+.tc-viz-label{font-size:.9rem;font-weight:700;margin-bottom:6px;color:var(--text)}
 .tc-viz-macros{font-size:.75rem;color:var(--text-secondary);line-height:1.5}
+.tc-viz-item.active .tc-viz-kcal{color:var(--primary);font-size:20px}
 #tc-viz-high{color:#dc2626}#tc-viz-mid{color:#d97706}#tc-viz-low{color:#059669}
+@keyframes ringPulse{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 8px rgba(99,102,241,0.4))}}
+.tc-viz-item.active .tc-viz-ring{animation:ringPulse 2s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -264,7 +270,7 @@ input,select,textarea{font-family:inherit}
 
   <!-- 碳日可视化卡片 -->
   <div class="card">
-    <div class="card-title"><span class="ct-dot"></span>三档碳日</div>
+    <div class="card-title"><span class="ct-dot"></span>碳循环概括图</div>
     <div class="tc-viz-grid">
       <div class="tc-viz-item active" id="tc-viz-high" onclick="setTC('high')">
         <div class="tc-viz-ring">
