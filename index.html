@@ -182,7 +182,7 @@ input,select,textarea{font-family:inherit}
     <div class="formula-card"><div class="fc-title">BMR 基础代谢</div><div class="fc-val" id="f0-bmr">--</div><div class="fc-sub">kcal / 天</div></div>
     <div class="formula-card"><div class="fc-title">TDEE 总消耗</div><div class="fc-val" id="f0-tdee">--</div><div class="fc-sub">kcal / 天</div></div>
     <div class="formula-card accent"><div class="fc-title">目标热量</div><div class="fc-val" id="f0-goal">--</div><div class="fc-sub">缺口 <span id="f0-def">450</span> kcal</div></div>
-    <div class="formula-card" id="f0-progress-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac"><div class="fc-title">📅 预计达成</div><div class="fc-val" id="f0-weeks">--</div><div class="fc-sub" id="f0-progress-sub">—</div></div>
+
   </div>
   <div class="card">
     <div class="card-title"><span class="ct-dot"></span>三档碳日总览</div>
@@ -260,6 +260,11 @@ input,select,textarea{font-family:inherit}
         <div class="fi"><label style="color:#d97706">⚡ 中碳</label><select id="d-mccarb" onchange="calcAll()"><option value="2">2 g/kg</option><option value="2.5" selected>2.5 g/kg</option><option value="3">3 g/kg</option><option value="3.5">3.5 g/kg</option></select></div>
         <div class="fi"><label style="color:#059669">🌙 低碳</label><input type="text" value="1 g/kg（固定）" disabled style="background:#f0fdf4;color:#059669;font-weight:700;font-size:.8rem;border-color:#a7f3d1;cursor:not-allowed;text-align:center"></div>
       </div>
+    </div>
+    <div id="progress-info" style="margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:8px;border:1px solid #86efac;text-align:center">
+      <div style="font-size:.75rem;color:#059669;font-weight:700">📅 预计达成</div>
+      <div style="font-size:1.1rem;color:#16a34a;font-weight:700;margin-top:4px" id="prog-weeks">—</div>
+      <div style="font-size:.7rem;color:#6b7280;margin-top:2px" id="prog-detail">—</div>
     </div>
   </div>
   
