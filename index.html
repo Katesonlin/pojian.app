@@ -256,9 +256,9 @@ input,select,textarea{font-family:inherit}
     <div style="font-size:.75rem;color:var(--text-secondary);margin-top:10px">碳水系数（g/kg 体重）</div>
     <div style="background:var(--bg);border-radius:var(--radius-md);padding:10px 12px;border:1px solid var(--border)">
       <div class="form-grid-3">
-        <div class="fi"><label style="color:#dc2626">🔥 高碳</label><select id="d-hccarb" onchange="calcAll()"><option value="3">3 g/kg</option><option value="4" selected>4 g/kg</option><option value="5">5 g/kg</option><option value="6">6 g/kg</option></select></div>
-        <div class="fi"><label style="color:#d97706">⚡ 中碳</label><select id="d-mccarb" onchange="calcAll()"><option value="2">2 g/kg</option><option value="2.5" selected>2.5 g/kg</option><option value="3">3 g/kg</option><option value="3.5">3.5 g/kg</option></select></div>
-        <div class="fi"><label style="color:#059669">🌙 低碳</label><input type="text" value="1 g/kg（固定）" disabled style="background:#f0fdf4;color:#059669;font-weight:700;font-size:.8rem;border-color:#a7f3d1;cursor:not-allowed;text-align:center"></div>
+        <div class="fi"><label>高碳</label><select id="d-hccarb" onchange="calcAll()"><option value="3">3 g/kg</option><option value="4" selected>4 g/kg</option><option value="5">5 g/kg</option><option value="6">6 g/kg</option></select></div>
+        <div class="fi"><label>中碳</label><select id="d-mccarb" onchange="calcAll()"><option value="2">2 g/kg</option><option value="2.5" selected>2.5 g/kg</option><option value="3">3 g/kg</option><option value="3.5">3.5 g/kg</option></select></div>
+        <div class="fi"><label>低碳</label><input type="text" value="1 g/kg（固定）" disabled style="cursor:not-allowed;text-align:center"></div>
       </div>
     </div>
     <div id="progress-info" style="margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:8px;border:1px solid #a78bfa;text-align:center">
