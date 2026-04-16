@@ -8,7 +8,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#6366f1;--primary-light:#818cf8;--primary-dark:#4f46e5;--accent:#f59e0b;--bg:#f5f6fa;--surface:#fff;--text:#1e1e2e;--text-secondary:#6b7280;--text-hint:#9ca3af;--border:#e5e7eb;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 24px rgba(99,102,241,.15);--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:20px}
 body{font-family:PingFang SC,Helvetica Neue,Arial,Microsoft YaHei,sans-serif;background:#f9fafb;color:var(--text);font-size:16px;line-height:1.6;max-width:520px;margin:0 auto;padding-bottom:88px;-webkit-font-smoothing:antialiased}
-.welcome-overlay{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;height:100vh;background:linear-gradient(145deg,#6366f1,#818cf8);z-index:999;justify-content:center;align-items:center;flex-direction:column}.welcome-overlay.show{display:flex}.welcome-logo{font-size:3rem;margin-bottom:12px}.welcome-title{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px}.welcome-sub{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:32px;text-align:center;padding:0 24px}.welcome-btn{background:#fff;color:#6366f1;font-size:1rem;font-weight:700;padding:14px 40px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.welcome-overlay{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;height:100vh;background:linear-gradient(145deg,#6366f1,#818cf8);z-index:999;justify-content:center;align-items:center;flex-direction:column}.welcome-overlay.show{display:flex}.welcome-title{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px}.welcome-sub{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:32px;text-align:center;padding:0 24px}.welcome-btn{background:#fff;color:#6366f1;font-size:1rem;font-weight:700;padding:14px 40px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 input,select,textarea{font-family:inherit}
 .page{display:none;padding:16px 14px 12px}.page.active{display:block}
 .tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:6px 0;z-index:200;box-shadow:0 -2px 16px rgba(0,0,0,.06);transition:none}
@@ -173,7 +173,7 @@ input,select,textarea{font-family:inherit}
 </head>
 <body>
 <div class="welcome-overlay" id="welcome-overlay">
-  <div class="welcome-logo">🦐</div>
+  
   <div class="welcome-title">破茧 · 碳循环减脂</div>
   <div class="welcome-sub">科学碳循环 · 精准营养追踪<br>让减脂成为可持续的生活方式</div>
   <button class="welcome-btn" onclick="startApp()">开始使用</button>
