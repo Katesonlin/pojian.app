@@ -13,7 +13,7 @@ let S={
   height:174,weight:90,age:30,tw:74,al:1.55,pf:2,
   deficit:450,chR:4,cmR:2.5,clR:1,fatR:0.8,
   carbType:'high',
-  carbDays:['high','mid','high','low','high','low','mid'],
+  carbDays:['high','mid','high','low','mid','high','low'],
   trainDays:['strength','cardio','strength','strength','strength','rest','cardio'],
   rd:75,rhiit:10,rs:60,rr:120,rw:10,rc:10
 };
