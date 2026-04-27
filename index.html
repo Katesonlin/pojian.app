@@ -393,7 +393,7 @@ input,select,textarea{font-family:inherit}
 <script>
 var D={height:174,weight:90,age:30,activity:1.55,deficit:450};
 var S={pf:2.0,chc:4,cmc:2.5,carbDays:['high','mid','high','low','mid','high','low'],trainDays:['strength','cardio','strength','strength','strength','rest','cardio']};
-var curTC="high";
+var curTC=CARB_DAYS[(new Date().getDay()+6)%7];
 var curTrainDay=0;  // 0-6, which training day is selected
 var curHeroDay=(new Date().getDay()+6)%7;  // selected day in hero strip (default today)
 var TC_MAP=["high","mid","high","low","mid","high","low"];
