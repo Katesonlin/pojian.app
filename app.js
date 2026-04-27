@@ -220,5 +220,16 @@ function load(){
 
 document.addEventListener('DOMContentLoaded',()=>{
   load();
+  // 新的一天：清空输入栏但保留计算系数
+  const lastDate=localStorage.getItem('poijun_date');
+  const today=new Date().toDateString();
+  if(lastDate&&lastDate!==today){
+    // 清空食物输入
+    ['oat','eggn','eggg','milk','rice','chicken','veg1','bann','bang','rice2','salmon','veg2','sw','beef','veg3','cas','alm'].forEach(k=>{const el=$('f-'+k);if(el)el.value=''});
+    // 清空饮食记录显示
+    ['hCalCur','pCur','cCur','fCur'].forEach(id=>t(id,'—'));
+    $('hCalBar').style.width='0%';
+  }
+  localStorage.setItem('poijun_date',today);
   calcAll();
 });
