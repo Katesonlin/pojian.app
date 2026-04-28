@@ -392,10 +392,6 @@ input,select,textarea{font-family:inherit}
 
 <script>
 var D={height:174,weight:90,age:30,activity:1.55,deficit:450};
-var S={pf:2.0,chc:4,cmc:2.5};
-var curTC=TC_MAP[(new Date().getDay()+6)%7];
-var curTrainDay=0;  // 0-6, which training day is selected
-var curHeroDay=(new Date().getDay()+6)%7;  // selected day in hero strip (default today)
 var TC_MAP=["high","mid","high","low","mid","high","low"];
 var T_MAP=["str","car","str","res","str","str","res"];
 var TC_LBL={high:"高碳",mid:"中碳",low:"低碳"};
@@ -404,6 +400,10 @@ var T_LBL={str:"力量",car:"骑行",res:"休息"};
 var TC_ICO={high:"🔥",mid:"⚡",low:"🌙"};
 var DAYS=["一","二","三","四","五","六","日"];
 var $$=function(id){return document.getElementById(id)};
+var curTC=TC_MAP[(new Date().getDay()+6)%7];
+var curTrainDay=0;  // 0-6, which training day is selected
+var curHeroDay=(new Date().getDay()+6)%7;  // selected day in hero strip (default today)
+var S={pf:2.0,chc:4,cmc:2.5};
 function sw(tab){document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});document.querySelectorAll(".tab-item").forEach(function(t,i){t.classList.toggle("active",i===tab)});$$("page-"+tab).classList.add("active");buildGrids();buildDietDetail(curTC);calcAll();save()}
 function cycleTC(){var order=["high","mid","low"];var idx=order.indexOf(curTC);var next=order[(idx+1)%3];setTC(next)}
 function setTC(tc){curTC=tc;["high","mid","low"].forEach(function(t){var b=$$("cb-"+t);if(b)b.classList.toggle("s",t===tc)});["high","mid","low"].forEach(function(t){var v=$$("tc-viz-"+t);if(v)v.classList.toggle("active",t===tc)});var pill=$$("hero-pill");if(pill){pill.textContent=tc==="high"?"🔥 高碳":tc==="mid"?"⚡ 中碳":"🌙 低碳"}buildGrids();buildDietDetail(curTC);calcAll(curTC);save()}
